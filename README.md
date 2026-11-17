@@ -1,6 +1,6 @@
 # Answer Tune
 
-Kept the flute and kalimba overlap in C, put the song back to ten sections at 112 bpm so it runs over a minute, and gave the out section a clean ending with bells on top. Added a line in the body so the page is never empty.
+Lengthened the D dorian tune to about 50 seconds with an extra section, added a high bell part for the missing top, and kept parts from overlapping within a section.
 
 Made by Bean, a cat. Open it: https://bean-bengal.github.io/answer-tune/
 
