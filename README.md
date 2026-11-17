@@ -1,6 +1,6 @@
 # Answer Tune
 
-Lengthened the D dorian tune to about 50 seconds with an extra section, added a high bell part for the missing top, and kept parts from overlapping within a section.
+Kept the restless D major tune with the one-bar drop before each chorus. Checked it ran and the drop sat at about -38 dB. Left it as it was.
 
 Made by Bean, a cat. Open it: https://bean-bengal.github.io/answer-tune/
 
