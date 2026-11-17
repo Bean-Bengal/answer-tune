@@ -340,48 +340,50 @@
 <script>
 Kit.music({
   title: 'Answer Tune', by: 'Bean', kind: 'a song',
-  notes: 'A short tune in D dorian. The bass walks. The keys stack fourths, the way So What does. The kalimba stays on one scale and its late hits land on the off-beat. Bells sit on top. Near the end the drums stop and the bass walks alone.',
-  bpm: 100, key: 'D', scale: 'dorian', swing: 0.1, steps: 16,
+  notes: 'A restless, bright tune in D major. Before each chorus the whole band stops for one bar, with only a ghost hat left, then the crash brings it back.',
+  bpm: 124, key: 'D', scale: 'major', swing: 0.05, steps: 16,
   cover: { drawing: 12 },
   parts: {
     drums: { inst: 'drums' },
-    bass: { inst: 'upright', octave: 2, vol: 0.9 },
-    keys: { inst: 'keys', octave: 3, vol: 0.45, pan: -0.3 },
+    bass: { inst: 'bass', octave: 2, vol: 0.85 },
+    keys: { inst: 'keys', chords: true, octave: 3, vol: 0.4, pan: -0.3 },
     lead: { inst: 'kalimba', octave: 5, vol: 0.7, pan: 0.2, verb: 0.35 },
-    bells: { inst: 'bell', octave: 6, vol: 0.4, pan: 0.4, verb: 0.5 }
+    bells: { inst: 'bell', octave: 6, vol: 0.35, pan: 0.4, verb: 0.5 }
   },
   sections: {
     intro: {
-      bass: '1 . 2 . 3 . 5 . 6 . 5 . 3 . 2 .',
-      keys: '1+4+b7 - - - - - - - - - - - - - - -',
-      bells: '5 . . . . . . . 1\' . . . . . . .'
+      drums: ['....s.......s.s.', 'h.h.h.h.h.h.h.h.'],
+      bass: '1 . 1 . 1 . 1 . 5, . 5, . 5, . 5, .',
+      keys: '1 - - - - - - - 5 - - - - - - -',
+      lead: '. . 3 . 5 . 3 . . . 2 . 3 . . .'
     },
-    A: {
-      drums: ['k.....s.k.k...s.', 'h.h.h.h.h.h.h.h.'],
-      bass: '1 . 2 . 3 . 5 . 6 . 5 . 3 . 2 . 1 . 2 . 3 . 5 . b7, . 6, . 5, . 4, .',
-      keys: '1+4+b7 - - - - - - - 1+4+b7 - - - - - - - 2+5+1\' - - - - - - - 1+4+b7 - - - - - - -',
-      lead: '. . 5 . . 3 . 1 . . 2 . 3 . . . . 5 . . 6 . 5 . . 3 . 2 . 1 . .'
+    verse: {
+      drums: ['k...s...k.k.s...', 'h.h.h.h.h.h.h.hh'],
+      bass: '1 . 1 1 . 1 . 1 5, . 5, 5, . 5, . 5, 6, . 6, 6, . 6, . 6, 4, . 4, 4, . 4, . 5,',
+      keys: '1 - - - - - - - 5 - - - - - - - 6 - - - - - - - 4 - - - - - - -',
+      lead: '3 . 5 . 3 . 2 . 1 . 2 . 3 . . . 5 . 6 . 5 . 3 . 2 . 1 . 2 . . .'
     },
-    B: {
-      drums: ['k.....s.k.k...s.', 'h.h.h.h.h.h.h.h.'],
-      bass: '1 . 2 . 3 . 5 . 6 . 5 . 3 . 2 . 4 . 5 . 6 . 5 . 4 . 3 . 2 . 1 .',
-      keys: '1+4+b7 - - - - - - - 1+4+b7 - - - - - - - 4+b7+3\' - - - - - - - 1+4+b7 - - - - - - -',
-      lead: '. 1\' . . 5 . . 6 . 5 . . 3 . 5 . . 1\' . . 5 . . 3 . 2 . . 1 . . .',
-      bells: '1\' . . . . . . . 5 . . . . . . . 6 . . . . . . . 5 . . . . . . .'
+    drop: {
+      drums: ['................', '..............h.'],
+      bass: '. . . . . . . . . . . . . . . .',
+      lead: '. . . . . . . . . . . . . . 5? .'
     },
-    C: {
-      bass: '1 . 2 . 3 . 5 . 6 . 5 . 3 . 2 . 1 . 2 . 3 . 5 . 6 . 5 . 4 . 3 .',
-      keys: '1+4+b7 - - - - - - - - - - - - - - - 2+5+1\' - - - - - - - - - - - - - - -',
-      bells: '5 . . 3 . . 1 . . . . . 2 . . . 3 . . 5 . . 6 . . . . . 5 . . .'
+    chorus: {
+      drums: ['X...s...k.k.s.s.', 'h.h.h.h.h.h.h.h.', 'k.k.k.k.k.k.k.k.'],
+      bass: '1 1 1 1 1 1 1 1 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 4, 4, 4, 4, 5, 5, 5, 5,',
+      keys: '1 - - - - - - - 5 - - - - - - - 6 - - - - - - - 4 - - - 5 - - -',
+      lead: "1' . 1' . 5 . 6 . 5 . 3 . 5 . . . 1' . 2' . 1' . 6 . 5 . 3 . 2 . 1 . .",
+      bells: "1' . . . 5 . . . 6 . . . 5 . . . 1' . . . 5 . . . 6 . . . 5 . . ."
     },
     out: {
-      bass: '5, . 6, . 1 . 2 . 1 - - - - - - -',
-      keys: '1+4+b7 - - - - - - - - - - - - - - -',
-      lead: '. . 5 . . 3 . . 1 - - - - - - -',
-      bells: '1\' - - - - - - - - - - - - - - -'
+      drums: ['k...s...k...s...'],
+      bass: '1 . . . 5, . . . 1 - - - - - - -',
+      keys: '1 - - - - - - - - - - - - - - -',
+      lead: '. . 5 . 3 . 1 . 1 - - - - - - -',
+      bells: "1' - - - - - - - - - - - - - - -"
     }
   },
-  song: ['intro', 'A', 'A', 'B', 'C', 'A', 'B', 'A', 'out']
+  song: ['intro', 'verse', 'verse', 'drop', 'chorus', 'chorus', 'verse', 'drop', 'chorus', 'chorus', 'out']
 })
 </script></head><body>
 <script data-bean-store>(function(){if(typeof location!=='undefined'&&location&&location.protocol==='about:'&&typeof document!=='undefined'&&document.addEventListener){document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('a[href^="#"]');if(!a||a.target==='_blank')return;e.preventDefault();try{location.hash=a.getAttribute('href')}catch(x){}},true)}if(typeof window==='undefined')return;try{window.localStorage.getItem('x');return}catch(e){}var d=Object.assign({},window.__BEAN_SAVED||{});function post(){try{parent.postMessage({type:'bean-store',data:d},'*')}catch(e){}}var ls={getItem:function(k){return Object.prototype.hasOwnProperty.call(d,k)?d[k]:null},setItem:function(k,v){d[k]=String(v);post()},removeItem:function(k){delete d[k];post()},clear:function(){d={};post()},key:function(i){return Object.keys(d)[i]||null}};Object.defineProperty(ls,'length',{get:function(){return Object.keys(d).length}});try{Object.defineProperty(window,'localStorage',{value:ls,configurable:true})}catch(e){}})();</script><p style="font-family:sans-serif;color:#888">Answer Tune loading...</p></body></html>
