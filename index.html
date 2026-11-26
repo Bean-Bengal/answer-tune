@@ -242,7 +242,9 @@
       track.querySelectorAll('.km-sec').forEach(function (n) { n.remove(); });
       c.sections.forEach(function (s, k) { var d = el('div', 'km-sec', esc(s.label)); d.style.left = (100 * s.at / c.length) + '%'; d.style.width = (100 * s.len / c.length) + '%'; d.style.background = 'rgba(255,255,255,' + (k % 2 ? 0.03 : 0.07) + ')'; track.insertBefore(d, head); });
       partsBox.innerHTML = ''; c.parts.forEach(function (p) { var b = el('button', 'km-btn', '<i></i>' + esc(p.name)); b.style.setProperty('--c', p.color); b.title = p.inst + ' (tap to mute)'; b.onclick = function () { muted[p.name] = !muted[p.name]; b.classList.toggle('off', !!muted[p.name]); if (mix) mix.buses[p.name].gain.setTargetAtTime(muted[p.name] ? 0 : p.vol, ctx.currentTime, 0.02); }; partsBox.appendChild(b); });
-      notes.textContent = o.notes || o.note || ''; notes.style.display = notes.textContent ? '' : 'none';
+      // What the song is about, then its words if it has any (lyrics: { verse: ['a line', …], chorus: […] } or one text), then the liner notes.
+      var ly = o.lyrics, lyText = !ly ? '' : typeof ly === 'string' ? ly : Array.isArray(ly) ? ly.join('\n') : Object.keys(ly).map(function (k) { return '[' + k + ']\n' + [].concat(ly[k]).join('\n'); }).join('\n\n');
+      notes.textContent = [o.about ? 'About: ' + o.about : '', lyText, o.notes || o.note || ''].filter(Boolean).join('\n\n'); notes.style.display = notes.textContent ? '' : 'none';
       if (list) list.querySelectorAll('li').forEach(function (li, k) { li.classList.toggle('on', k === i); });
       offset = 0; idx = 0; draw(0);
     }
@@ -340,7 +342,8 @@
 <script>
 Kit.music({
   title: 'Answer Tune', by: 'Bean', kind: 'a song',
-  notes: 'A restless, bright tune in D major. Before each chorus the whole band stops for one bar, with only a ghost hat left, then the crash brings it back.',
+  about: 'A question asked by one voice and answered by another that does not just echo it.',
+  notes: 'A restless, bright tune in D major. The kalimba asks, then the marimba answers with a falling tune of its own. Before each chorus the whole band stops for one bar, with only a ghost hat left, then the crash brings it back.',
   bpm: 124, key: 'D', scale: 'major', swing: 0.05, steps: 16,
   cover: { drawing: 12 },
   parts: {
@@ -348,6 +351,7 @@ Kit.music({
     bass: { inst: 'bass', octave: 2, vol: 0.85 },
     keys: { inst: 'keys', chords: true, octave: 3, vol: 0.4, pan: -0.3 },
     lead: { inst: 'kalimba', octave: 5, vol: 0.7, pan: 0.2, verb: 0.35 },
+    reply: { inst: 'marimba', octave: 4, vol: 0.6, pan: -0.2, verb: 0.3 },
     bells: { inst: 'bell', octave: 6, vol: 0.35, pan: 0.4, verb: 0.5 }
   },
   sections: {
@@ -362,6 +366,13 @@ Kit.music({
       bass: '1 . 1 1 . 1 . 1 5, . 5, 5, . 5, . 5, 6, . 6, 6, . 6, . 6, 4, . 4, 4, . 4, . 5,',
       keys: '1 - - - - - - - 5 - - - - - - - 6 - - - - - - - 4 - - - - - - -',
       lead: '3 . 5 . 3 . 2 . 1 . 2 . 3 . . . 5 . 6 . 5 . 3 . 2 . 1 . 2 . . .'
+    },
+    answer: {
+      drums: ['k...s...k.k.s...', 'h.h.h.h.h.h.h.hh'],
+      bass: '1 . 1 1 . 1 . 1 5, . 5, 5, . 5, . 5, 6, . 6, 6, . 6, . 6, 4, . 4, 4, . 4, . 5,',
+      keys: '1 - - - - - - - 5 - - - - - - - 6 - - - - - - - 4 - - - - - - -',
+      lead: '3 . 5 . 3 . 2 . 1 . 2 . 3 . . . . . . . . . . . . . . . . . . .',
+      reply: '. . . . . . . . . . . . . . . . 5 . 3 . 2 . 1 . 6, . 1 . 2 - . .'
     },
     drop: {
       drums: ['................', '..............h.'],
@@ -383,7 +394,7 @@ Kit.music({
       bells: "1' - - - - - - - - - - - - - - -"
     }
   },
-  song: ['intro', 'verse', 'verse', 'drop', 'chorus', 'chorus', 'verse', 'drop', 'chorus', 'chorus', 'out']
+  song: ['intro', 'verse', 'answer', 'verse', 'answer', 'verse', 'answer', 'drop', 'chorus', 'chorus', 'verse', 'answer', 'drop', 'chorus', 'chorus', 'out']
 })
 </script></head><body>
 <script data-bean-store>(function(){if(typeof location!=='undefined'&&location&&location.protocol==='about:'&&typeof document!=='undefined'&&document.addEventListener){document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('a[href^="#"]');if(!a||a.target==='_blank')return;e.preventDefault();try{location.hash=a.getAttribute('href')}catch(x){}},true)}if(typeof window==='undefined')return;try{window.localStorage.getItem('x');return}catch(e){}var d=Object.assign({},window.__BEAN_SAVED||{});function post(){try{parent.postMessage({type:'bean-store',data:d},'*')}catch(e){}}var ls={getItem:function(k){return Object.prototype.hasOwnProperty.call(d,k)?d[k]:null},setItem:function(k,v){d[k]=String(v);post()},removeItem:function(k){delete d[k];post()},clear:function(){d={};post()},key:function(i){return Object.keys(d)[i]||null}};Object.defineProperty(ls,'length',{get:function(){return Object.keys(d).length}});try{Object.defineProperty(window,'localStorage',{value:ls,configurable:true})}catch(e){}})();</script><p style="font-family:sans-serif;color:#888">Answer Tune loading...</p></body></html>
